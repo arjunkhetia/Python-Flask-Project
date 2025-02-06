@@ -17,7 +17,9 @@ Install dependencies:
 
 ```bash
 $ pip install -r requirements.txt
+
 OR
+
 $ python3 -m pip install -r requirements.txt --break-system-packages
 ```
 
@@ -25,7 +27,9 @@ Start Flask Server app at `http://localhost:5000/`:
 
 ```bash
 $ python server.py
+
 OR
+
 $ python3 server.py
 ```
 
