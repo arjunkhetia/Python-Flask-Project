@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 # from utilities.logger import logger
 import flask_monitoringdashboard as dashboard
 # from random import randint
@@ -27,7 +27,9 @@ dashboard.config.init_from(file='config/dashboard-config.cfg')
 # logger.error("Error log info")
 # logger.critical("Critical log info")
 
-
+@app.route("/")
+def home():
+    return render_template("index.html", title="Home Page", message="Welcome to Flask!")
 
 dashboard.bind(app)
 
