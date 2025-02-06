@@ -1,18 +1,24 @@
 from flask import Flask
 # from utilities.logger import logger
 import flask_monitoringdashboard as dashboard
-from random import randint
+# from random import randint
+from flask_compress import Compress
+import os
+
+compress = Compress()
+SECRET_KEY = os.urandom(32)
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = SECRET_KEY
+compress.init_app(app)
 
 dashboard.config.init_from(file='config/dashboard-config.cfg')
 
 # Add new graph to monitoring dashboard
-def numberOfNewCustomers():
-    return float(randint(1,5))
-numberOfNewCustomers_schedule = {'seconds': 10}
-dashboard.add_graph("Every 10 Seconds", numberOfNewCustomers, "interval", **numberOfNewCustomers_schedule)
-
+# def numberOfNewCustomers():
+#     return float(randint(1,5))
+# numberOfNewCustomers_schedule = {'seconds': 10}
+# dashboard.add_graph("Every 10 Seconds", numberOfNewCustomers, "interval", **numberOfNewCustomers_schedule)
 
 # showing different logging levels
 # logger.debug("debug log info")
@@ -20,6 +26,8 @@ dashboard.add_graph("Every 10 Seconds", numberOfNewCustomers, "interval", **numb
 # logger.warning("Warning log info")
 # logger.error("Error log info")
 # logger.critical("Critical log info")
+
+
 
 dashboard.bind(app)
 
