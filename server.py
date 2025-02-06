@@ -29,7 +29,12 @@ dashboard.config.init_from(file='config/dashboard-config.cfg')
 
 @app.route("/")
 def home():
-    return render_template("index.html", title="Home Page", message="Welcome to Flask!")
+    return render_template("index.html", data={
+        'title': "Home Page",
+        'message': "Welcome to Flask!",
+        'array': ['1', '2', '3', '4', '5'],
+        'user': "Arjun Khetia"
+    })
 
 dashboard.bind(app)
 
