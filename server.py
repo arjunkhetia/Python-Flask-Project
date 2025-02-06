@@ -3,6 +3,7 @@ from flask import Flask, render_template
 import flask_monitoringdashboard as dashboard
 # from random import randint
 from flask_compress import Compress
+from flask_cors import CORS
 import os
 
 compress = Compress()
@@ -10,6 +11,7 @@ SECRET_KEY = os.urandom(32)
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = SECRET_KEY
+CORS(app)
 compress.init_app(app)
 
 dashboard.config.init_from(file='config/dashboard-config.cfg')
