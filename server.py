@@ -1,10 +1,11 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, json
 # from utilities.logger import logger
 import flask_monitoringdashboard as dashboard
 # from random import randint
 from flask_compress import Compress
 from flask_cors import CORS
 from routes import register_routes
+from werkzeug.exceptions import HTTPException
 import os
 
 compress = Compress()
@@ -41,6 +42,20 @@ def home():
 
 # Register blueprints (modular routes)
 register_routes(app)
+
+# Generic Exception Handlers
+@app.errorhandler(HTTPException)
+def handle_exception(e):
+    # start with the correct headers and status code from the error
+    response = e.get_response()
+    # replace the body with JSON
+    response.data = json.dumps({
+        "code": e.code,
+        "name": e.name,
+        "description": e.description,
+    })
+    response.content_type = "application/json"
+    return response
 
 dashboard.bind(app)
 
