@@ -4,6 +4,7 @@ import flask_monitoringdashboard as dashboard
 # from random import randint
 from flask_compress import Compress
 from flask_cors import CORS
+from routes import register_routes
 import os
 
 compress = Compress()
@@ -37,6 +38,9 @@ def home():
         'array': ['1', '2', '3', '4', '5'],
         'user': "Arjun Khetia"
     })
+
+# Register blueprints (modular routes)
+register_routes(app)
 
 dashboard.bind(app)
 
