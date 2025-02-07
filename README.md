@@ -86,6 +86,8 @@ A dashboard for automatic monitoring of Flask web-services. The Flask Monitoring
 - Collect extra information about outliers
 - Collect additional information about our Flask-application
 
+Start Flask Monitoring Dashboard at `http://localhost:5000/dashboard`
+
 ```python
 import flask_monitoringdashboard as dashboard
 
@@ -102,7 +104,7 @@ dashboard-config.cfg -
 ```cfg
 [dashboard]
 APP_VERSION=1.0
-GIT=https://github.com/arjunkhetia/Python-Flask-Project/.git/
+GIT=https://github.com/arjunkhetia/Python-Flask-Project.git
 BLUEPRINT_NAME=dashboard
 CUSTOM_LINK=dashboard
 MONITOR_LEVEL=3
@@ -129,6 +131,8 @@ DATABASE=sqlite:///flask_monitoringdashboard.db
 TIMEZONE=Asia/Kolkata
 COLORS={'main':'[0,97,255]', 'static':'[255,153,0]'}
 ```
+
+![Monitoring Dashboard](https://github.com/arjunkhetia/Python-Flask-Project/blob/main/static/flask-monitoring-dashboard.png "Monitoring Dashboard")
 
 [version-image]: https://img.shields.io/badge/Version-1.0.0-orange.svg
 [linuxbuild-image]: https://img.shields.io/badge/Linux-passing-brightgreen.svg
