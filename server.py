@@ -6,15 +6,20 @@ from flask_compress import Compress
 from flask_cors import CORS
 from routes import register_routes
 from werkzeug.exceptions import HTTPException
-import os
+import configparser
 
 compress = Compress()
-SECRET_KEY = os.urandom(32)
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = SECRET_KEY
 CORS(app)
 compress.init_app(app)
+
+# Load configuration from a .cfg file
+config = configparser.ConfigParser()
+config.read("config/app-config.cfg")
+
+# Apply config values to Flask app
+app.config["SECRET_KEY"] = config["DEFAULT"]["SECRET_KEY"]
 
 dashboard.config.init_from(file='config/dashboard-config.cfg')
 
