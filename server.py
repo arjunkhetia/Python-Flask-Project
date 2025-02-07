@@ -20,6 +20,11 @@ config.read("config/app-config.cfg")
 
 # Apply config values to Flask app
 app.config["SECRET_KEY"] = config["DEFAULT"]["SECRET_KEY"]
+app.config["DEBUG"] = config.getboolean("DEFAULT", "DEBUG")
+
+# Read host and port from config
+host = config["SERVER"]["HOST"]
+port = config.getint("SERVER", "PORT")  # Convert to integer
 
 dashboard.config.init_from(file='config/dashboard-config.cfg')
 
@@ -65,4 +70,4 @@ def handle_exception(e):
 dashboard.bind(app)
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)  # Enables auto-reload
+    app.run(host=host, port=port, debug=app.config["DEBUG"])  # Enables auto-reload
